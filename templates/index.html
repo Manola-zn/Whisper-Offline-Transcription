@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎤 Whisper Offline Transcription</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Font Awesome for icons (microphone, gear, copy, etc.) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light">
+
+  <!-- Main Container (Glassmorphic) -->
+  <div class="container">
+    
+    <!-- Settings Button (Top-right gear) -->
+    <button id="settingsBtn" class="settings-launch" title="Settings">
+      <i class="fas fa-gear"></i>
+    </button>
+
+    <!--  Main Heading -->
+    <h1>📝 Voice Transcribe</h1>
+
+    <!-- Recording Panel -->
+    <div class="recording-panel">
+      <button id="startBtn"><i class="fas fa-microphone"></i> Start</button>
+      <button id="stopBtn" style="display:none"><i class="fas fa-stop"></i> Stop</button>
+      <div id="recordingTimer">00:00</div>
+      <canvas id="waveform" width="500" height="100" style="display:none;"></canvas>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader" style="display:none;">
+      <div class="loader-animation"></div>
+      <span class="loader-text">Transcribing your voice…</span>
+    </div>
+
+    <!-- Transcription Output -->
+    <textarea id="transcript"
+              placeholder="Your transcription will appear here..."></textarea>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+      <!-- Copy transcription to clipboard -->
+      <button id="copyBtn"><i class="fas fa-copy"></i> Copy</button>
+      <!-- Download recorded audio -->
+      <button id="downloadBtn"><i class="fas fa-download"></i> Download Audio</button>
+      <!-- Reset transcription and audio -->
+      <button id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+    </div>
+
+    <!-- Audio playback element (hidden initially) -->
+    <audio id="audioPlayback" controls style="margin-top:15px; width: 95%; display:none;"></audio>
+
+    <!-- Container for toast notifications (success, error, info, warning) -->
+    <div id="toast-container" class="toast-bottom-right"></div>
+
+    
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <h2><i class="fas fa-gear"></i> Settings</h2>
+
+      <!-- Notification Sound Toggle -->
+      <label class="switch-row">
+        <span>Notification Sound</span>
+        <label class="switch">
+          <input type="checkbox" id="soundToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </label>
+
+      <!-- Dark Mode Toggle -->
+      <label class="switch-row">
+        <span>Dark Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="slider"></span>
+        </label>
+      </label>
+
+      <!-- Toast Notification Position Selector -->
+      <label class="switch-row">
+        <span>Toast Position</span>
+        <select id="toastPosition">
+          <option value="toast-bottom-right">Bottom Right</option>
+          <option value="toast-bottom-left">Bottom Left</option>
+          <option value="toast-top-right">Top Right</option>
+          <option value="toast-top-center">Top Center</option>
+        </select>
+      </label>
+
+      <!-- Close Modal Button -->
+      <button id="closeSettings" class="close-btn-modal" title="Close Settings">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
